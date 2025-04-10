@@ -1,3 +1,12 @@
 <template>
-    
+    <lightning-layout>
+        <lightning-layout-item>
+            <lightning-input label="Enter Account Name" onchange={handleKeyChange}></lightning-input>
+        </lightning-layout-item>
+
+        <lightning-layout-item>
+            <lightning-button label="Search" onclick={handleClick}></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+
 </template>
