@@ -38,6 +38,6 @@ export default class AccountList extends LightningElement {
             this.currentName = event.detail.row.Name;}
     }
 
-    @wire(getAccounts) accountRecords;
+    @wire(getAccounts,{searchKey:'$searchText'}) accountRecords;
 
 }
