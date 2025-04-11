@@ -1,9 +1,9 @@
 <template>
     <lightning-card title="Account's & Contacts Management">
-        <c-search-bar></c-search-bar>
+        <c-search-bar ongetsearchevent={handleEvent}></c-search-bar>
     </lightning-card>
 
     <lightning-card>
-        <c-account-list></c-account-list>
+        <c-account-list search-text={searchAccName}></c-account-list>
     </lightning-card>
 </template>

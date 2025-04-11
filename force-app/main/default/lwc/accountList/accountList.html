@@ -1,3 +1,10 @@
 <template>
-    account child 2
+    {searchText}
+    {currentId}
+    {currentName}
+
+    <lightning-datatable key-field="" data={accountRecords.data} columns={columns} hide-checkbox-column
+        onrowaction={handleRowAction} show-row-number-column="ture">
+
+    </lightning-datatable>
 </template>
