@@ -1,9 +1,13 @@
 import { api, wire , LightningElement } from 'lwc';
 import getAccounts  from '@salesforce/apex/AccountClass.getAccounts';
+import { MessageContext, publish } from 'lightning/messageService';
+import Comrevo from '@salesforce/messageChannel/Comrevo__c';
 
 export default class AccountList extends LightningElement {
 
     @api searchText;
+
+    @wire(MessageContext) messageContext;
 
     columns = [
         { 
@@ -36,6 +40,13 @@ export default class AccountList extends LightningElement {
         if(event.detail.action.value=='view_contacts'){ 
             this.currentId = event.detail.row.Id;
             this.currentName = event.detail.row.Name;}
+
+            const payload = {
+                accountId: event.detail.row.Id,
+                accountName: event.detail.row.Name
+            };
+
+            publish(this.messageContext, Comrevo ,payload);
     }
 
     @wire(getAccounts,{searchKey:'$searchText'}) accountRecords;
