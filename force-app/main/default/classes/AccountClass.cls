@@ -15,4 +15,16 @@ public with sharing class AccountClass {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled
+    public static List<Contact> getAccContacts(String accId){
+        try {
+            return [SELECT Id,Name
+                    FROM Contact
+                    WHERE AccountId =: accId];
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
 }
