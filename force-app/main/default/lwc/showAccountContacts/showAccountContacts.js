@@ -2,7 +2,7 @@ import { MessageContext, subscribe } from 'lightning/messageService';
 import { LightningElement , wire } from 'lwc';
 import Comrevo from '@salesforce/messageChannel/Comrevo__c';
 import getAccContacts from '@salesforce/apex/AccountClass.getAccContacts';
-
+import MyModal from 'c/myModal';
 
 export default class ShowAccountContacts extends LightningElement {
 
@@ -11,6 +11,7 @@ export default class ShowAccountContacts extends LightningElement {
     contacts;
     hasContacts;
     isAccountSelected = false;
+
 
     @wire (MessageContext) messageContext;
 
@@ -51,4 +52,34 @@ export default class ShowAccountContacts extends LightningElement {
         this.isAccountSelected = true;
         
     }
+
+    async handleAddContact() {
+        const result = await MyModal.open({
+            modalHeader: "Add Contact",
+            size: 'large',
+            description: 'Accessible description of modal\'s purpose',
+            content: 'Passed into content api',
+        });
+    }
+
+    async handleEditContact() {
+        const result = await MyModal.open({
+            modalHeader: "Edit Contact",
+            size: 'large',
+            description: 'Accessible description of modal\'s purpose',
+            content: 'Passed into content api',
+        });
+    }
+
+    async handleDeleteContact() {
+        const result = await MyModal.open({
+            modalHeader: "Delete Contact",
+            size: 'large',
+            description: 'Accessible description of modal\'s purpose',
+            content: 'Passed into content api',
+        });
+    }
+
+
+
 }
