@@ -13,6 +13,7 @@ export default class ShowAccountContacts extends LightningElement {
     isAccountSelected = false;
 
 
+
     @wire (MessageContext) messageContext;
 
     accountId;
@@ -49,8 +50,7 @@ export default class ShowAccountContacts extends LightningElement {
     async getContacts() {
         this.contacts =  await getAccContacts({accId: this.accountId});
         this.hasContacts = this.contacts.length > 0? true:false;
-        this.isAccountSelected = true;
-        
+        this.isAccountSelected = true; 
     }
 
     async handleAddContact() {
@@ -59,6 +59,12 @@ export default class ShowAccountContacts extends LightningElement {
             size: 'large',
             description: 'Accessible description of modal\'s purpose',
             content: 'Passed into content api',
+            isAddContact: true,
+            isEditContact: false,
+            isDeleteContact: false,
+            accountId: this.accountId
+        }).then(result => {
+                this.getContacts();
         });
     }
 
@@ -68,6 +74,10 @@ export default class ShowAccountContacts extends LightningElement {
             size: 'large',
             description: 'Accessible description of modal\'s purpose',
             content: 'Passed into content api',
+            isAddContact: false,
+            isEditContact: true,
+            isDeleteContact: false,
+            
         });
     }
 
@@ -77,6 +87,9 @@ export default class ShowAccountContacts extends LightningElement {
             size: 'large',
             description: 'Accessible description of modal\'s purpose',
             content: 'Passed into content api',
+            isAddContact: false,
+            isEditContact: false,
+            isDeleteContact: true
         });
     }
 

@@ -1,7 +1,24 @@
 <template>
     <lightning-modal-header label={modalHeader}></lightning-modal-header>
-    <lightning-modal-body> Content: {content} </lightning-modal-body>
+    <lightning-modal-body>
+        <template if:true={isAddContact}>
+            <lightning-record-edit-form object-api-name="Contact" record-id={recordId} onsuccess={handleOkay}>
+                <lightning-input-field field-name="Name"> </lightning-input-field>
+                <lightning-input-field field-name="AccountId" value={accountId}> </lightning-input-field>
+                <div class="slds-var-m-top_medium">
+                    <lightning-button variant="brand" type="submit" label="Save">
+                    </lightning-button>
+                </div>
+            </lightning-record-edit-form>
+        </template>
+        <template if:true={isEditContact}>
+            add
+        </template>
+        <template if:true={isDeleteContact}>
+            delete
+        </template>
+    </lightning-modal-body>
     <lightning-modal-footer>
-        <lightning-button label="OK" onclick={handleOkay}></lightning-button>
+        <lightning-button label="Save" onclick={handleOkay}></lightning-button>
     </lightning-modal-footer>
 </template>
