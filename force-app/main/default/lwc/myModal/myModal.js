@@ -8,7 +8,6 @@ export default class MyModal extends LightningModal {
     @api modalHeader;
     @api isAddContact;
     @api isEditContact;
-    @api isDeleteContact;
     @api recordId;
     @api accountId;
     @api editableContactId;
