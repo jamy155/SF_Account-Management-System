@@ -12,7 +12,14 @@
             </lightning-record-edit-form>
         </template>
         <template if:true={isEditContact}>
-            add
+            <lightning-record-edit-form object-api-name="Contact" record-id={editableContactId} onsuccess={handleOkay}>
+                <lightning-input-field field-name="Name"> </lightning-input-field>
+                <lightning-input-field field-name="AccountId" value={accountId}> </lightning-input-field>
+                <div class="slds-var-m-top_medium">
+                    <lightning-button variant="brand" type="submit" label="Save">
+                    </lightning-button>
+                </div>
+            </lightning-record-edit-form>
         </template>
         <template if:true={isDeleteContact}>
             delete

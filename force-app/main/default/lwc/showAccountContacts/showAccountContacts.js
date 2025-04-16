@@ -77,7 +77,9 @@ export default class ShowAccountContacts extends LightningElement {
             isAddContact: false,
             isEditContact: true,
             isDeleteContact: false,
-            
+            editableContactId: event.target.dataset.contactId
+        }).then(result => {
+                this.getContacts();
         });
     }
 

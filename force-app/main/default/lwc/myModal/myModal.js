@@ -11,6 +11,7 @@ export default class MyModal extends LightningModal {
     @api isDeleteContact;
     @api recordId;
     @api accountId;
+    @api editableContactId;
 
 
     handleOkay() {

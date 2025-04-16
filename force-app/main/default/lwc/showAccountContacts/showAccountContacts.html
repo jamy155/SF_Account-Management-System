@@ -16,8 +16,8 @@
 
                         <lightning-layout-item size="4">
                             <lightning-button-icon icon-name="utility:edit" variant="brand" alternative-text="Edit"
-                                class="slds-m-left_xx-small" title="Edit"
-                                onclick={handleEditContact}></lightning-button-icon>
+                                class="slds-m-left_xx-small" title="Edit" onclick={handleEditContact}
+                                data-contact-id={contact.Id}> </lightning-button-icon>
                             <lightning-button-icon icon-name="utility:delete" variant="brand" alternative-text="Delete"
                                 class="slds-m-left_xx-small" title="Delete"
                                 onclick={handleDeleteContact}></lightning-button-icon>
