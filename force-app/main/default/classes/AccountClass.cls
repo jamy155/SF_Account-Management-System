@@ -27,4 +27,20 @@ public with sharing class AccountClass {
         }
     }
 
+    @AuraEnabled
+    public static Boolean hasCases(String contId){
+        try {
+            List<Case> accCases = [SELECT Id FROM Case WHERE ContactId =: contId];
+
+            if(accCases.size() > 0){
+                return true;
+            }else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
 }

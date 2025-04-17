@@ -12,6 +12,8 @@ export default class MyModal extends LightningModal {
     @api accountId;
     @api editableContactId;
 
+    message = "Your attempt to delete this contact could not be completed because it is associated a case";
+
 
     handleOkay() {
         this.close('okay');

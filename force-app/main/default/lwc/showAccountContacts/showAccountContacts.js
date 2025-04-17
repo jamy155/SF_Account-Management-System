@@ -6,6 +6,7 @@ import MyModal from 'c/myModal';
 import LightningConfirm from 'lightning/confirm';
 import { deleteRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import hasCases from '@salesforce/apex/AccountClass.hasCases';
 
 export default class ShowAccountContacts extends LightningElement {
 
@@ -15,6 +16,7 @@ export default class ShowAccountContacts extends LightningElement {
     hasContacts;
     isAccountSelected = false;
     editableContactId;
+    accHasCases = false;
 
 
 
@@ -89,18 +91,38 @@ export default class ShowAccountContacts extends LightningElement {
     }
 
     async handleDeleteContact(event) {
+
         this.editableContactId = event.target.dataset.contactId;
-        const result = await LightningConfirm.open({
-            message: 'Are you sure you want to delete this contact?',
-            variant: 'headerless',
-            label: 'this is the aria-label value',
+        this.accHasCases = await hasCases({contId:  this.editableContactId});
+        
+        if(this.accHasCases ) {
+
+            const result = await MyModal.open({
+            modalHeader: "Your attempt to delete this contact could not be completed because it is associated with a case",
+            size: 'large',
+            content: 'Your attempt to delete this contact could not be completed because it is associated a case',
+            isAddContact: false,
+            isEditContact: false,
+            isDeleteContact: true,
+        }).then(result => {
+                this.getContacts();
         });
 
-        if (result) {
-            let deleteResult = await deleteRecord(this.editableContactId);
-            this.getContacts();
-            this.showToast();
-        };
+        } else{
+
+            const result = await LightningConfirm.open({
+                message: 'Are you sure you want to delete this contact?',
+                variant: 'headerless',
+                label: 'this is the aria-label value',
+            });
+
+            if (result) {
+                let deleteResult = await deleteRecord(this.editableContactId);
+                this.getContacts();
+                this.showToast();
+            };
+        }   
+        
 }
 
         showToast() {
