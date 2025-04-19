@@ -19,7 +19,6 @@ export default class ShowAccountContacts extends LightningElement {
     accHasCases = false;
 
 
-
     @wire (MessageContext) messageContext;
 
     accountId;
@@ -36,6 +35,7 @@ export default class ShowAccountContacts extends LightningElement {
     handleSubscribe() {
         if(!this.subscription) 
             {
+                // gets the account Id and Name from accountList 
                 this.subscription = subscribe(this.messageContext,Comrevo, 
                     (param)=>
                         {
@@ -53,12 +53,14 @@ export default class ShowAccountContacts extends LightningElement {
         this.subscription = null;
     }
 
+    //gets from the Account contacts from account Class
     async getContacts() {
         this.contacts =  await getAccContacts({accId: this.accountId});
         this.hasContacts = this.contacts.length > 0? true:false;
         this.isAccountSelected = true; 
     }
 
+    // opens up a popup that adds a contact to account 
     async handleAddContact() {
         const result = await MyModal.open({
             modalHeader: "Add Contact",
@@ -74,6 +76,7 @@ export default class ShowAccountContacts extends LightningElement {
         });
     }
 
+    // opens up a popup that edits the current contact
     async handleEditContact() {
         this.editableContactId = event.target.dataset.contactId;
         const result = await MyModal.open({
@@ -90,9 +93,12 @@ export default class ShowAccountContacts extends LightningElement {
         });
     }
 
+    // opens up a popup that deletes the current contact if it has no cases 
     async handleDeleteContact(event) {
 
         this.editableContactId = event.target.dataset.contactId;
+
+        // checks to see if account has cases from Account Class 
         this.accHasCases = await hasCases({contId:  this.editableContactId});
         
         if(this.accHasCases ) {
@@ -125,6 +131,7 @@ export default class ShowAccountContacts extends LightningElement {
         
 }
 
+        //shows message when account is deleted
         showToast() {
         const event = new ShowToastEvent({
             title: 'Delete contact',
@@ -133,9 +140,5 @@ export default class ShowAccountContacts extends LightningElement {
         });
         this.dispatchEvent(event);
     }
-
-    
-
-
 
 }
