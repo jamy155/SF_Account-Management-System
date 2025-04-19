@@ -24,7 +24,7 @@ A Salesforce Lightning App Page designed to streamline account and contact manag
      ![Account Management System](https://github.com/jamy155/SF_Account-Management-System/blob/a148e144df7ed68217b300754fe1522e466b39ea/snapshots/Edit_Contact.png)
   
   - Delete contacts as needed.
-    ![Account Management System](https://github.com/jamy155/SF_Account-Management-System/blob/a148e144df7ed68217b300754fe1522e466b39ea/snapshots/Delete_Contact2.png)
+    ![Account Management System](https://github.com/jamy155/SF_Account-Management-System/blob/58ada2160bd709b1e201c4efbfffd11fd6a78fb8/snapshots/Delete_Contact2.jpg)
 
 ## 🌍 Impact
 
