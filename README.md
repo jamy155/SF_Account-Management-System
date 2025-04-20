@@ -4,6 +4,8 @@
 
 A Salesforce Lightning App Page designed to streamline account and contact management. This application enables users to search for accounts, view associated contacts, and perform create, edit, and delete operations on contact records within a user-friendly interface.
 
+<b>This project is part of the Salesforce (Admin + Developer) course by Parag Jambhulkar </b>
+
 ##### This Project highlights all the following Fundamentals 🛠️ :
 
 - Apex Development
